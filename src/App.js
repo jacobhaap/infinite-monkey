@@ -5,9 +5,9 @@ const App = () => {
   const [text, setText] = useState('');
 
   const characters = {
-    topRow: 'qwertyuiop'.split(''),
-    homeRow: 'asdfghjkl'.split(''),
-    bottomRow: 'zxcvbnm'.split(''),
+    topRow: 'QWERTYUIOP'.split(''),
+    homeRow: 'ASDFGHJKL'.split(''),
+    bottomRow: 'ZXCVBNM'.split(''),
     spaceBar: ' '.split('')
   };
 
@@ -33,7 +33,7 @@ const App = () => {
   const getWeightedRandomInterval = () => {
     let random = Math.random();
     if (random < 0.5) {
-      return Math.random() * (300 - 200) + 200;
+      return Math.random() * (300 - 200) + 10;
     } else {
       return Math.random() < 0.5 ? Math.random() * (200 - 100) + 100 : Math.random() * (750 - 300) + 300;
     }
@@ -57,6 +57,12 @@ const App = () => {
 
   return (
     <div className="App">
+      <div className="image-container">
+        <img src="/monkey-typewriter.png" alt="Monkey" className="image" />
+      </div>
+      <div className="header-container">
+        <h1 className="header"><a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem" target="_blank">1 Monkey, 1 Typewriter.</a></h1>
+      </div>
       <div className="text-container">{text}</div>
     </div>
   );

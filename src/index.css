@@ -2,5 +2,24 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #f0f0f0;
+  background-color: #FCF5E5;
+  height: 100vh;
+  transition: padding 0.3s ease, margin 0.3s ease;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+@media (max-width: 768px) {
+  body {
+    margin: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    margin: 5px;
+  }
 }
