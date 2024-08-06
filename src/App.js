@@ -4,10 +4,38 @@ import './App.css';
 const App = () => {
   const [text, setText] = useState('');
 
+  const characters = {
+    topRow: 'qwertyuiop'.split(''),
+    homeRow: 'asdfghjkl'.split(''),
+    bottomRow: 'zxcvbnm'.split(''),
+    spaceBar: ' '.split('')
+  };
+
+  const weights = {
+    topRow: 1,
+    homeRow: 2,
+    bottomRow: 1,
+    spaceBar: 2
+  };
+
+  const createWeightedArray = () => {
+    let weightedArray = [];
+    
+    for (const [key, value] of Object.entries(characters)) {
+      for (let i = 0; i < weights[key]; i++) {
+        weightedArray = weightedArray.concat(value);
+      }
+    }
+    
+    return weightedArray;
+  };
+
   useEffect(() => {
-    const characters = 'abcdefghijklmnopqrstuvwxyz ';
+    const weightedCharacters = createWeightedArray();
+
     const interval = setInterval(() => {
-      setText(prev => prev + characters.charAt(Math.floor(Math.random() * characters.length)));
+      const randomIndex = Math.floor(Math.random() * weightedCharacters.length);
+      setText(prev => prev + weightedCharacters[randomIndex]);
     }, 25);
 
     return () => clearInterval(interval);
@@ -18,6 +46,6 @@ const App = () => {
       <div className="text-container">{text}</div>
     </div>
   );
-}
+};
 
 export default App;
