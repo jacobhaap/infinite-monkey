@@ -1,0 +1,15 @@
+{
+  "short_name": "Infinite Monkey",
+  "name": "1 Monkey, 1 Typewriter.",
+  "icons": [
+    {
+      "src": "monkey-typewriter.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#FCF5E5"
+}
