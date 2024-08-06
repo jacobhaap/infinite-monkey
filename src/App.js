@@ -30,15 +30,29 @@ const App = () => {
     return weightedArray;
   };
 
+  const getWeightedRandomInterval = () => {
+    let random = Math.random();
+    if (random < 0.5) {
+      return Math.random() * (300 - 200) + 200;
+    } else {
+      return Math.random() < 0.5 ? Math.random() * (200 - 100) + 100 : Math.random() * (750 - 300) + 300;
+    }
+  };
+
   useEffect(() => {
     const weightedCharacters = createWeightedArray();
-
-    const interval = setInterval(() => {
+    
+    const addCharacter = () => {
       const randomIndex = Math.floor(Math.random() * weightedCharacters.length);
       setText(prev => prev + weightedCharacters[randomIndex]);
-    }, 25);
+      
+      clearTimeout(timerId);
+      timerId = setTimeout(addCharacter, getWeightedRandomInterval());
+    };
 
-    return () => clearInterval(interval);
+    let timerId = setTimeout(addCharacter, getWeightedRandomInterval());
+
+    return () => clearTimeout(timerId);
   }, []);
 
   return (
