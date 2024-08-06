@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import './App.css';
 
 const App = () => {
   const [text, setText] = useState('');
 
-  const characters = {
+  const characters = useMemo(() => ({
     topRow: 'QWERTYUIOP'.split(''),
     homeRow: 'ASDFGHJKL'.split(''),
     bottomRow: 'ZXCVBNM'.split(''),
     spaceBar: ' '.split('')
-  };
+  }), []);
 
-  const weights = {
+  const weights = useMemo(() => ({
     topRow: 1,
     homeRow: 2,
     bottomRow: 1,
     spaceBar: 2
-  };
+  }), []);
 
-  const createWeightedArray = () => {
+  const createWeightedArray = useCallback(() => {
     let weightedArray = [];
     
     for (const [key, value] of Object.entries(characters)) {
@@ -28,7 +28,7 @@ const App = () => {
     }
     
     return weightedArray;
-  };
+  }, [characters, weights]);
 
   const getWeightedRandomInterval = () => {
     let random = Math.random();
@@ -53,7 +53,7 @@ const App = () => {
     let timerId = setTimeout(addCharacter, getWeightedRandomInterval());
 
     return () => clearTimeout(timerId);
-  }, []);
+  }, [createWeightedArray]);
 
   return (
     <div className="App">
@@ -61,7 +61,11 @@ const App = () => {
         <img src="/monkey-typewriter.png" alt="Monkey" className="image" />
       </div>
       <div className="header-container">
-        <h1 className="header"><a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem" target="_blank">1 Monkey, 1 Typewriter.</a></h1>
+        <h1 className="header">
+          <a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem" target="_blank" rel="noreferrer">
+            1 Monkey, 1 Typewriter.
+          </a>
+        </h1>
       </div>
       <div className="text-container">{text}</div>
     </div>
