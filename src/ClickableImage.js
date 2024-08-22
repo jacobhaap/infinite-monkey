@@ -1,36 +1,34 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const ClickableImage = () => {
+const ClickableImage = ({ onImageClick }) => {
   const [notification, setNotification] = useState(false);
   const imageRef = useRef(null);
   const notificationRef = useRef(null);
 
   useEffect(() => {
     const handleClick = () => {
-      navigator.clipboard.writeText('Banana')
-        .then(() => {
-          setNotification(true);
+      if (onImageClick) {
+        onImageClick();
+      }
 
-          const imageElement = imageRef.current;
-          const notificationElement = notificationRef.current;
+      setNotification(true);
 
-          if (imageElement && notificationElement) {
-            const rect = imageElement.getBoundingClientRect();
-            notificationElement.style.top = `${rect.top + window.scrollY + rect.height / 2}px`;
-            notificationElement.style.left = `${rect.left + window.scrollX + rect.width / 2}px`;
-          }
+      const imageElement = imageRef.current;
+      const notificationElement = notificationRef.current;
 
-          setTimeout(() => setNotification(false), 3500);
-        })
-        .catch((err) => {
-          console.error('Failed to copy: ', err);
-        });
+      if (imageElement && notificationElement) {
+        const rect = imageElement.getBoundingClientRect();
+        notificationElement.style.top = `${rect.top + window.scrollY + rect.height / 2}px`;
+        notificationElement.style.left = `${rect.left + window.scrollX + rect.width / 2}px`;
+      }
+
+      setTimeout(() => setNotification(false), 3500);
     };
 
     const imageElement = imageRef.current;
     if (imageElement) {
       imageElement.style.cursor = 'pointer';
-      imageElement.title = "Click for Banana";
+      imageElement.title = "Click for Monkey Entropy";
       imageElement.addEventListener('click', handleClick);
     }
 
@@ -39,7 +37,7 @@ const ClickableImage = () => {
         imageElement.removeEventListener('click', handleClick);
       }
     };
-  }, []);
+  }, [onImageClick]);
 
   return (
     <>
@@ -49,7 +47,7 @@ const ClickableImage = () => {
           ref={notificationRef}
           className="notification-box"
         >
-          Banana Copied to Clipboard!
+          Monkey Entropy Copied to Clipboard!
         </div>
       )}
     </>
