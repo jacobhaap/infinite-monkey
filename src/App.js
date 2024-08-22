@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Typewriter from './Typewriter';
 import Monkey from './Monkey';
+import ClickableImage from './ClickableImage';
 
 const App = () => {
   const [text, setText] = useState('');
@@ -9,12 +10,12 @@ const App = () => {
   return (
     <div className="App">
       <div className="image-container">
-        <img src="/monkey-typewriter.png" alt="Monkey" className="image" />
+        <ClickableImage />
       </div>
       <div className="header-container">
         <h1 className="header">
           <a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem" target="_blank" rel="noreferrer">
-            A Monkey and a Typewriter.
+          1 Monkey, 1 Typewriter.
           </a>
         </h1>
       </div>

@@ -12,6 +12,8 @@
 }
 
 .image-container {
+  box-sizing: border-box;
+  padding: 2em;
   flex: 0 0 40%;
   display: flex;
   justify-content: center;
@@ -25,6 +27,18 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+}
+
+.notification-box {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  color: #FCF5E5;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  pointer-events: none
 }
 
 .header-container {
@@ -57,6 +71,7 @@
   }
 
   .image-container {
+    box-sizing: border-box;
     flex: 0 0 30%;
     height: 20vh;
   }
