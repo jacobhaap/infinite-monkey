@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+@font-face {
+  font-family: 'Special Elite';
+  src: url('./fonts/SpecialElite-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 .App {
   display: flex;
